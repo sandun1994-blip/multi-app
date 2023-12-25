@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import Markdown from 'react-native-markdown-display';
-
+import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import MarkdownDisplay from '../../../components/EditorScreen';
 
 
 const template = `# 🎉 Fun with Markdown!
@@ -48,37 +47,80 @@ Markdown is not just for formatting; it's for having fun while expressing yourse
 
 > Enjoy crafting your own fun markdown documents! 🎨🎉
 `;
-type Props = {}
 
-const EditorScreen = (props: Props) => {
+const EditorScreen = () => {
+  const [content, setContent] = useState(template);
+  const [tab, setTab] = useState('edit');
+
   return (
     <View style={styles.page}>
-       <Markdown style={markdownStyles}>
-            {template}
-          </Markdown>
+      <View style={styles.tabsContainer}>
+        <Pressable
+          onPress={() => setTab('edit')}
+          style={[
+            styles.tab,
+            { borderColor: tab === 'edit' ? 'mediumorchid' : 'gray' },
+          ]}
+        >
+          <Text style={styles.tabText}>Edit</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => setTab('preview')}
+          style={[
+            styles.tab,
+            { borderColor: tab === 'preview' ? 'mediumorchid' : 'gray' },
+          ]}
+        >
+          <Text style={styles.tabText}>Preview</Text>
+        </Pressable>
+      </View>
+
+      {tab === 'edit' ? (
+        <TextInput
+          value={content}
+          onChangeText={setContent}
+          multiline
+          numberOfLines={50}
+          style={styles.input}
+        />
+      ) : (
+        <MarkdownDisplay>{content}</MarkdownDisplay>
+      )}
     </View>
-  )
-  
-}
+  );
+};
 
-const markdownStyles=StyleSheet.create(
-    {
-        heading1:{
-            color:'red',
-            fontFamily:'InterBold'
-        },
-        heading2:{
-            fontFamily:'InterBold',color:'#404040'
-        }
-      
-})
+const styles = StyleSheet.create({
+  page: {
+    backgroundColor: 'whitesmoke',
+    flex: 1,
+    padding: 10,
+  },
+  input: {
+    backgroundColor: 'white',
+    flex: 1,
+    padding: 20,
+    paddingTop: 20,
+    borderRadius: 10,
+    fontSize: 16,
+  },
 
-export default EditorScreen
+  tabsContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    marginVertical: 10,
+  },
+  tab: {
+    flex: 1,
+    padding: 10,
+    borderColor: 'gray',
+    borderWidth: 2,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  tabText: {
+    fontFamily: 'InterBold',
+  },
+});
 
-
-const styles=StyleSheet.create({
-    page:{
-        backgroundColor:'white',
-        padding:10
-    }
-})
+export default EditorScreen;

@@ -8,7 +8,7 @@ type Props = {}
 
 const index = (props: Props) => {
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeAreaView  style={styles.page}>
         <Stack.Screen options={{headerShown:false}}/>
      <EditorScreen/>
     </SafeAreaView>
@@ -19,6 +19,7 @@ export default index
 
 const styles = StyleSheet.create({
     page:{
-        flex:1
+        flex:1,
+        padding:10
     }
 })
