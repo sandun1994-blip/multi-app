@@ -21,3 +21,7 @@ Reanimated
 # npx expo install react-native-reanimated
 
 npx expo start -c
+
+# npx expo install lottie-react-native
+
+46

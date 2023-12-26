@@ -1,6 +1,9 @@
 {
   "expo": {
     "name": "devember-one",
+    "experiments": {
+      "tsconfigPaths": true
+    },
     "slug": "devember-one",
     "scheme": "your-app-scheme",
     "version": "1.0.0",
@@ -8,9 +11,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash1.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"

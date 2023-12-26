@@ -13,13 +13,10 @@ import { useEffect } from "react";
 import { AmaticSC_400Regular } from "@expo-google-fonts/amatic-sc";
 import DayListItem from "../components/core/DayListItem";
 import { Link } from "expo-router";
+import React from "react";
 
 SplashScreen.preventAutoHideAsync();
 export default function HomeScreen() {
- 
-
-  
-
   const days = [...Array(24)].map((val, index) => {
     return index + 1;
   });
@@ -33,7 +30,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         renderItem={({ item }) => <DayListItem item={item} />}
       />
-      <Link href={"/day3"}>go to about</Link>
+      <Link href={"/day4/splash"}>go to about</Link>
       <StatusBar style="auto" />
     </View>
   );
