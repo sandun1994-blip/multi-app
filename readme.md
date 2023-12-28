@@ -24,4 +24,4 @@ npx expo start -c
 
 # npx expo install lottie-react-native
 
-46
+# npx expo install react-native-maps

@@ -13,6 +13,8 @@ export default function RootLayput(){
   const [appReady,setAppReady] =useState(false)
   const [splashAnimationFinished, setSplashAnimationFinished] = useState(false);
   const handleChange =(isCancelled:boolean)=>{
+    //console.log(isCancelled);
+    
     if (!isCancelled) {
       setSplashAnimationFinished(true);
     }
@@ -32,7 +34,7 @@ export default function RootLayput(){
     
       useEffect(() => {
         if (fontsLoaded || fontError) {
-           SplashScreen.hideAsync();
+          // SplashScreen.hideAsync();
            setAppReady(true)
         }
       }, [fontsLoaded, fontError]);

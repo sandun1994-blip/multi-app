@@ -30,7 +30,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         renderItem={({ item }) => <DayListItem item={item} />}
       />
-      <Link href={"/day4/splash"}>go to about</Link>
+      <Link href={"/day5/airbnb"}>go to about</Link>
       <StatusBar style="auto" />
     </View>
   );
