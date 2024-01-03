@@ -6,6 +6,7 @@ import Animated, {
   interpolate,
   runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
@@ -30,10 +31,19 @@ const TinderCard = ({
   numOfCards,
   index,
   activeIndex,
-  onResponse
+  onResponse,
 }: TinderCard) => {
-
   const translationX = useSharedValue(0);
+
+  // useDerivedValue(() => {
+  //   activeIndex.value = interpolate(
+  //     Math.abs(translationX.value),
+  //     [0, 500],
+  //     [0, activeIndex.value + 1]
+  //   );
+  // });
+
+ 
   const animatedCard = useAnimatedStyle(() => ({
     opacity: interpolate(
       activeIndex.value,
@@ -93,31 +103,31 @@ const TinderCard = ({
 
   return (
     <GestureDetector gesture={gesture}>
-    <Animated.View
-      style={[
-        styles.card,
-        animatedCard,
-        {
-          zIndex: numOfCards - index,
-        },
-      ]}
-    >
-      <Image
-        style={[StyleSheet.absoluteFillObject, styles.image]}
-        source={{ uri: user.image }}
-      />
+      <Animated.View
+        style={[
+          styles.card,
+          animatedCard,
+          {
+            zIndex: numOfCards - index,
+          },
+        ]}
+      >
+        <Image
+          style={[StyleSheet.absoluteFillObject, styles.image]}
+          source={{ uri: user.image }}
+        />
 
-      <LinearGradient
-        // Background Linear Gradient
-        colors={['transparent', 'rgba(0,0,0,0.8)']}
-        style={[StyleSheet.absoluteFillObject, styles.overlay]}
-      />
+        <LinearGradient
+          // Background Linear Gradient
+          colors={["transparent", "rgba(0,0,0,0.8)"]}
+          style={[StyleSheet.absoluteFillObject, styles.overlay]}
+        />
 
-      <View style={styles.footer}>
-        <Text style={styles.name}>{user.name}</Text>
-      </View>
-    </Animated.View>
-  </GestureDetector>
+        <View style={styles.footer}>
+          <Text style={styles.name}>{user.name}</Text>
+        </View>
+      </Animated.View>
+    </GestureDetector>
   );
 };
 

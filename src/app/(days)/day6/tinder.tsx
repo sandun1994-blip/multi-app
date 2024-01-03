@@ -6,14 +6,14 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import TinderCard from "@/components/day6/TinderCard";
 import { Stack } from "expo-router";
-import { interpolate, useDerivedValue, useSharedValue, withDecay, withSpring } from "react-native-reanimated";
+import { interpolate, runOnJS, useAnimatedReaction, useDerivedValue, useSharedValue, withDecay, withSpring } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 type Props = {};
-const users = [
+const dummuUsers = [
   {
     id: 1,
     image:
@@ -56,10 +56,26 @@ const TinderScreen = (props: Props) => {
 
   const activeIndex = useSharedValue(0);
   const translationX =useSharedValue(0)
+  const [users, setUsers] = useState(dummuUsers);
+  const [index, setIndex] = useState(0);
 
-  // useDerivedValue(()=>{
-  //   activeIndex.value = interpolate(Math.abs(translationX.value),[0,500],[0,activeIndex.value +1])
-  // })
+  useAnimatedReaction(
+    () => activeIndex.value,
+    (value, prevValue) => {
+      if (Math.floor(value) !== index) {
+        runOnJS(setIndex)(Math.floor(value));
+      }
+    }
+  );
+
+  useEffect(() => {
+    if (index > users.length - 3) {
+      console.warn('Last 2 cards remining. Fetch more!');
+      setUsers((usrs) => [...usrs, ...dummuUsers.reverse()]);
+    }
+  }, [index]);
+
+
 
 
   const gesture = Gesture.Pan()
