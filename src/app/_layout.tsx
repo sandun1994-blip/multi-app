@@ -7,7 +7,16 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated, { FadeOut, FadeIn } from "react-native-reanimated";
+// App.js
+
+import { Amplify } from 'aws-amplify';
+import amplifyconfig from 'src/amplifyconfiguration.json';
+Amplify.configure(amplifyconfig);
 SplashScreen.preventAutoHideAsync();
+
+
+
+
 export default function RootLayput(){
 
   const [appReady,setAppReady] =useState(false)

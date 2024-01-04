@@ -25,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sandun1rn.devemberone"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -33,6 +34,14 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "56826a5b-72ce-4198-b5c0-5110a9a00bdd"
+      }
+    }
   }
 }

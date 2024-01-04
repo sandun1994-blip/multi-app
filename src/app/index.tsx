@@ -30,7 +30,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         renderItem={({ item }) => <DayListItem item={item} />}
       />
-      <Link href={"/day8/weather"}>go to about</Link>
+      <Link href={"/day9/protected"}>go to about</Link>
       <StatusBar style="auto" />
     </View>
   );
