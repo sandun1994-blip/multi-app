@@ -11,7 +11,24 @@ import Animated, { FadeOut, FadeIn } from "react-native-reanimated";
 
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from 'src/amplifyconfiguration.json';
+import 'expo-dev-client';
+import { Authenticator, ThemeProvider } from "@aws-amplify/ui-react-native";
+
 Amplify.configure(amplifyconfig);
+
+const theme ={
+  tokens:{
+    colors:{
+      font:{
+        primary:'black'
+      }
+    }
+  }
+}
+
+
+
+
 SplashScreen.preventAutoHideAsync();
 
 
@@ -61,7 +78,10 @@ export default function RootLayput(){
         return index + 1;
       });
 
-    return( <GestureHandlerRootView style={{flex:1}}>  
+    return( 
+      <Authenticator.Provider>
+    <ThemeProvider theme={theme}>
+    <GestureHandlerRootView style={{flex:1}}>  
      <Animated.View 
     exiting={FadeOut.duration(300)}
     entering={FadeIn.duration(1000)}
@@ -69,6 +89,9 @@ export default function RootLayput(){
     <Stack screenOptions={{title:'december',headerStyle:{backgroundColor:'red'}}}>
         <Stack.Screen name="index" options={{title:'Title ',}}/>
     </Stack>
-    </Animated.View></GestureHandlerRootView>)
+    </Animated.View>
+    </GestureHandlerRootView>
+    </ThemeProvider>
+    </Authenticator.Provider>)
 }
 

@@ -19,7 +19,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sandun1rn.devemberone"
     },
     "android": {
       "adaptiveIcon": {
@@ -33,7 +34,8 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "react-native-health"
     ],
     "extra": {
       "router": {
