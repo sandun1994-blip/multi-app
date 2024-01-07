@@ -13,6 +13,7 @@ import { Amplify } from 'aws-amplify';
 import amplifyconfig from 'src/amplifyconfiguration.json';
 import 'expo-dev-client';
 import { Authenticator, ThemeProvider } from "@aws-amplify/ui-react-native";
+import BiometricProvider from "@/components/day10/BiometricsProvider";
 
 Amplify.configure(amplifyconfig);
 
@@ -79,6 +80,7 @@ export default function RootLayput(){
       });
 
     return( 
+      <BiometricProvider>
       <Authenticator.Provider>
     <ThemeProvider theme={theme}>
     <GestureHandlerRootView style={{flex:1}}>  
@@ -92,6 +94,7 @@ export default function RootLayput(){
     </Animated.View>
     </GestureHandlerRootView>
     </ThemeProvider>
-    </Authenticator.Provider>)
+    </Authenticator.Provider>
+    </BiometricProvider>)
 }
 

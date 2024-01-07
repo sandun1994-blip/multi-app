@@ -35,7 +35,8 @@
     },
     "plugins": [
       "expo-router",
-      "react-native-health"
+      "react-native-health",
+      "expo-local-authentication"
     ],
     "extra": {
       "router": {
